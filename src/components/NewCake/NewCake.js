@@ -28,6 +28,18 @@ const NewCake = ({ history }) => {
     }
   };
 
+  const handleSubmit = async (values, actions) => {
+    if (!values.imageUrl) {
+      values.imageUrl = 'https://via.placeholder.com/150';
+    }
+    try {
+      await createCake(values);
+    } catch (e) {
+      console.log(e);
+    }
+    actions.setSubmitting(false);
+  };
+
   return (
     <section>
       <Link to="/">
@@ -37,17 +49,7 @@ const NewCake = ({ history }) => {
       </Link>
       <Formik
         validationSchema={CakeSchema}
-        onSubmit={async (values, actions) => {
-          if (!values.imageUrl) {
-            values.imageUrl = 'https://via.placeholder.com/150';
-          }
-          try {
-            await createCake(values);
-          } catch (e) {
-            console.log(e);
-          }
-          actions.setSubmitting(false);
-        }}
+        onSubmit={handleSubmit}
         render={({ errors, touched, isSubmitting }) => (
           <Form>
             <div>
