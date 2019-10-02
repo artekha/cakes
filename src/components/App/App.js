@@ -6,8 +6,6 @@ import CakesList from '../CakesList';
 import CakeDetails from '../CakeDetails';
 import NewCake from '../NewCake';
 
-import './App.css';
-
 const App = () => (
   <Container>
     <h1>Cakes</h1>
